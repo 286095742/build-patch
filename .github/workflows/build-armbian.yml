@@ -126,6 +126,8 @@ jobs:
         id: clean
         if: ${{ steps.compile.outputs.status }} == 'success' && !cancelled()
         run: |
+          ls -lh
+          cd build/
           # Organize and keep essential files, delete unnecessary files
           chmod +x ${ROOTFS_SCRIPT}
           ${ROOTFS_SCRIPT} -v ${{ inputs.set_release }}
@@ -140,9 +142,9 @@ jobs:
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
         with:
           tag: ${{ steps.clean.outputs.build_tag }}
-          artifacts: output/images/*
+          artifacts: build/output/images/*
           allowUpdates: true
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Rebuild Armbian
       #   uses: csrbzhb/amlogic-s9xxx-armbian@rk
