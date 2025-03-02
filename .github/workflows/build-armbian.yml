@@ -103,8 +103,12 @@ jobs:
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
         run: |
           # copy patchs to build
+          pwd
+          ls -lh
           cp armbian_patch/* build/ -rf 
           cd build/
+          pwd
+          ls -lh
           # Compile method and parameter description: https://docs.armbian.com/Developer-Guide_Build-Options
           if [ ${{ inputs.armbian_desktop }} == 'false' ]; then
                   ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=${{ inputs.armbian_branch }} BUILD_MINIMAL=no \
@@ -115,6 +119,7 @@ jobs:
                              DESKTOP_APPGROUPS_SELECTED='browsers desktop_tools multimedia' \
                              DESKTOP_ENVIRONMENT=${{ inputs.armbian_desktop }} DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base \
                              BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=yes EXPERT=yes KERNEL_CONFIGURE=no \
+                             COMPRESS_OUTPUTIMAGE="sha" SHARE_LOG=yes
           fi
 
           echo "status=success" >> ${GITHUB_OUTPUT}
