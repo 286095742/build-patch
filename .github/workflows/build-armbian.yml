@@ -131,7 +131,9 @@ jobs:
           # Organize and keep essential files, delete unnecessary files
           chmod +x ${ROOTFS_SCRIPT}
           ${ROOTFS_SCRIPT} -v ${{ inputs.set_release }}
-
+          ## zhanghb added. set the builddir build/output/images/
+          cd output/images/
+          ls -lh
           # Output cleaning result information
           df -hT ${PWD}
           echo "build_tag=Armbian_${{ inputs.set_release }}_${{ inputs.armbian_storage }}_${{ inputs.armbian_desktop }}_$(date +"%Y.%m.%d-%H")" >> ${GITHUB_OUTPUT}
@@ -142,8 +144,13 @@ jobs:
         uses: ncipollo/release-action@v1
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
         with:
-          tag: ${{ steps.clean.outputs.build_tag }}
-          artifacts: ${{ env.FIRMWARE_PATH }}/*
           allowUpdates: true
+          tag: ${{ steps.clean.outputs.build_tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: ${{ env.FIRMWARE_PATH }}/*
+          body: |
+            **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
+            ### 🧊 固件版本
+            - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
+            - ${{ env.VERSION_INFO }}
 
