@@ -94,7 +94,8 @@ redo_rootfs() {
     [[ -n "${image_file}" ]] && {
         cd ${image_path}/
         # mv -f ${image_file} ${image_save_name}
-        pigz -qf *.img || gzip -qf *.img
+        # pigz -qf *.img || gzip -qf *.img
+	pigz -qf *.img | split -b 2000M - *.img.gz.part || gzip -qf *.img | split -b 2000M - *.img.gz.part
         [[ "${?}" == "0" ]] && echo -e "${INFO} 03. Renaming Armbian image completed." || error_msg "03. Failed to rename the image!"
     } || error_msg "03. Failed to find Armbian image!"
 
