@@ -33,6 +33,16 @@ function post_family_tweaks_bsp__config_aml-s9xx-box_bsp() {
 	display_alert "${BOARD}" "Removing armbian-install" "info"
 	run_host_command_logged rm -v "${destination}"/usr/bin/armbian-install
 
+	# install qq wechat wps
+	run_host_command_logged wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.deb -O /tmp/wechat.deb
+	run_host_command_logged apt install -y /tmp/wechat.deb
+	run_host_command_logged wget https://down.qq.com/qqweb/LinuxQQ/linuxqq_2.0.0-b2-1089_arm64.deb -O /tmp/qq.deb
+	run_host_command_logged apt install -y /tmp/qq.deb
+	run_host_command_logged wget https://wps-linux-365.wpscdn.cn/wps/download/ep/Linux365/20327/wps-office_12.8.2.20327.AK.preload.sw_arm64.deb -O /tmp/wps.deb
+	run_host_command_logged apt install -y /tmp/wps.deb
+	run_host_command_logged rm -rf /tmp/*.deb
+
+
 	display_alert "${BOARD}" "Adding bsp-cli preinst logic" "info"
 	# Inline function! So this function is automatically hashed when this hook is hashed.
 	function aml-s9xx-box-bsp-cli-preinst() {
@@ -43,6 +53,7 @@ function post_family_tweaks_bsp__config_aml-s9xx-box_bsp() {
 		[ -f /boot/emmc_autoscript ] && rm /boot/emmc_autoscript
 		[ -f /boot/s905_autoscript ] && rm /boot/s905_autoscript
 		[ -f /boot/u-boot-s905 ] && rm /boot/u-boot-s905
+		[ -f /boot/u-boot.ext ] && rm /boot/u-boot.ext
 		[ -f /boot/u-boot-s905x-s912 ] && rm /boot/u-boot-s905x-s912
 		[ -f /boot/u-boot-s905x2-s922 ] && rm /boot/u-boot-s905x2-s922
 		[ -f /boot/u-boot-s905x3 ] && rm /boot/u-boot-s905x3
