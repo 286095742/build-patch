@@ -35,7 +35,37 @@ Main() {
 		focal)
 			# your code here
 			;;
+		jammy)
+			# your code here
+			cp /etc/apt/sources.list /etc/apt/sources.list.bk
+			sudo sh -c 'echo "# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy main restricted universe multiverse
+# deb-src https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy main restricted universe multiverse
+deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-updates main restricted universe multiverse
+# deb-src https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-updates main restricted universe multiverse
+deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-backports main restricted universe multiverse
+# deb-src https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-backports main restricted universe multiverse
+
+# 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换
+deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-security main restricted universe multiverse
+# deb-src https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-proposed main restricted universe multiverse
+# # deb-src https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-proposed main restricted universe multiverse
+" > /etc/apt/sources.list'
+			;;
+		noble)
+			# your code here
+			;;
 	esac
+
+	apt update
+	apt install locales fonts-wqy-zenhei language-pack-zh-hans -y
+	locale-gen zh_CN.UTF-8
+	sudo sh -c 'echo  "LC_MESSAGES=zh_CN.UTF-8
+LANG=zh_CN.UTF-8" > /etc/default/locale'
+	update-locale
 	# add qq wechat wps
         wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.deb -O /tmp/wechat.deb
         dpkg -i /tmp/wechat.deb
@@ -43,6 +73,7 @@ Main() {
         dpkg -i /tmp/qq.deb
         wget https://wps-linux-365.wpscdn.cn/wps/download/ep/Linux365/20327/wps-office_12.8.2.20327.AK.preload.sw_arm64.deb -O /tmp/wps.deb
         dpkg -i /tmp/wps.deb
+	ls -l /tmp/
         rm -rf /tmp/qq.deb
         rm -rf /tmp/wps.deb
         rm -rf /tmp/wechat.deb
