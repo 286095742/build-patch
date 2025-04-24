@@ -38,11 +38,11 @@ Main() {
 	esac
 	# add qq wechat wps
         wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.deb -O /tmp/wechat.deb
-        apt install -y /tmp/wechat.deb
+        dpkg -i /tmp/wechat.deb
         wget https://down.qq.com/qqweb/LinuxQQ/linuxqq_2.0.0-b2-1089_arm64.deb -O /tmp/qq.deb
-        apt install -y /tmp/qq.deb
+        dpkg -i /tmp/qq.deb
         wget https://wps-linux-365.wpscdn.cn/wps/download/ep/Linux365/20327/wps-office_12.8.2.20327.AK.preload.sw_arm64.deb -O /tmp/wps.deb
-        apt install -y /tmp/wps.deb
+        dpkg -i /tmp/wps.deb
         rm -rf /tmp/qq.deb
         rm -rf /tmp/wps.deb
         rm -rf /tmp/wechat.deb
