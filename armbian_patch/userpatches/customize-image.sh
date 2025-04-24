@@ -53,7 +53,7 @@ deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-security main restricted uni
 # 预发布软件源，不建议启用
 # deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-proposed main restricted universe multiverse
 # # deb-src https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-proposed main restricted universe multiverse
-" > /etc/apt/sources.list'
+" > /etc/apt/sources.list.bk'
 			;;
 		noble)
 			# your code here
