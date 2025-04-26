@@ -64,7 +64,7 @@ deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-security main restricted uni
 	apt install locales fonts-wqy-zenhei language-pack-zh-hans -y
 	apt install -y fonts-arphic-uming language-pack-gnome-zh-hans-base language-pack-gnome-zh-hans fonts-arphic-ukai 
 	#fonts-noto-cjk-extra
-	apt install -y libxcb-icccm4
+	apt install -y libxcb-icccm4 libxcb-render-util0 libxcb-image0 libxcb-keysyms1
 	locale-gen zh_CN.UTF-8
 	sudo sh -c 'echo  "LC_MESSAGES=zh_CN.UTF-8
 LANG=zh_CN.UTF-8" > /etc/default/locale'
