@@ -113,7 +113,7 @@ jobs:
                   ./compile.sh build RELEASE=${{ inputs.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=${{ inputs.armbian_branch }} BUILD_MINIMAL=no HOST=armbian BUILD_DESKTOP=no KERNEL_CONFIGURE=no
           else
                   ./compile.sh RELEASE=${{ inputs.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=${{ inputs.armbian_branch }} BUILD_MINIMAL=no \
-                             DESKTOP_APPGROUPS_SELECTED='browsers desktop_tools multimedia internet editors' \
+                             DESKTOP_APPGROUPS_SELECTED='browsers internet editors' \
                              DESKTOP_ENVIRONMENT=${{ inputs.armbian_desktop }} DESKTOP_ENVIRONMENT_CONFIG_NAME=config_base \
                              BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=yes EXPERT=yes KERNEL_CONFIGURE=no \
                              COMPRESS_OUTPUTIMAGE="sha"
