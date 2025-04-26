@@ -74,7 +74,7 @@ LANG=zh_CN.UTF-8" > /etc/default/locale'
         apt install -y /tmp/wechat.deb
         wget https://down.qq.com/qqweb/LinuxQQ/linuxqq_2.0.0-b2-1089_arm64.deb -O /tmp/qq.deb
         apt install -y /tmp/qq.deb
-        wget https://wps-linux-365.wpscdn.cn/wps/download/ep/Linux365/20327/wps-office_12.8.2.20327.AK.preload.sw_arm64.deb -O /tmp/wps.deb
+        wget https://github.com/286095742/build-patch/releases/download/pkg_release/wps-office_11.1.0.10161_arm64.deb -O /tmp/wps.deb
         apt install -y /tmp/wps.deb
 	ls -l /tmp/
         rm -rf /tmp/qq.deb
