@@ -63,6 +63,7 @@ deb https://mirrors.bfsu.edu.cn/ubuntu-ports/ jammy-security main restricted uni
 	apt update
 	apt install locales fonts-wqy-zenhei language-pack-zh-hans -y
 	apt install -y fonts-arphic-uming language-pack-gnome-zh-hans-base language-pack-gnome-zh-hans fonts-arphic-ukai 
+	apt-get install -y xdg-utils
 	#fonts-noto-cjk-extra
 	apt install -y libxcb-icccm4 libxcb-render-util0 libxcb-image0 libxcb-keysyms1
 	locale-gen zh_CN.UTF-8
